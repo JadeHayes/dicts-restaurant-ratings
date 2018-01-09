@@ -46,5 +46,17 @@ def add_to_ratings():
 
     return ratings
 
-add_to_ratings()
-print_ratings(ratings)
+
+def prompt_user():
+    print "\nWhat would you like to do?"
+    user_selection = raw_input("A: view ratings \nB: add ratings \nQ: quit program\n").upper()
+
+    if user_selection == 'Q':
+        return
+    elif user_selection == 'A':
+        print_ratings(ratings)
+    elif user_selection == 'B':
+        add_to_ratings()
+    prompt_user()
+
+prompt_user()
