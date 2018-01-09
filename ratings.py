@@ -24,20 +24,27 @@ def print_ratings(ratings):
 # print
 
 
-def user_input():
+def add_to_ratings():
     """gets restaurant and rating from user, adds to dictionary, calls print
     function"""
 
     user_restaurant = raw_input("What is the name of the restaurant? ").title()
-    user_rating = raw_input("What is your rating for {}? ".format(user_restaurant))
+    validate_rating = True
 
-    ratings[user_restaurant] = user_rating
+    while validate_rating:
+        user_rating = int(raw_input("Rate {} between 1 and 5: ".format(user_restaurant)))
+        if user_rating > 0 and user_rating <= 5:
+            ratings[user_restaurant] = user_rating
+            validate_rating = False
+        else:
+            print "Please try again with a rating between 1 and 5. "
 
     add_another = raw_input("Would you like to add another restaurant. 'Y' for "
                             "yes, 'N' for no. ")
     if add_another.upper() == "Y":
-        user_input()
+        add_to_ratings()
 
-    return print_ratings(ratings)
+    return ratings
 
-user_input()
+add_to_ratings()
+print_ratings(ratings)
